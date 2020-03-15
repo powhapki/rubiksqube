@@ -1,0 +1,14 @@
+{
+  "ok": true,
+  "org": "star3am",
+  "id": "dc80e080-b772-401f-9a63-7e58771190f5",
+  "isMonitored": true,
+  "licensesPolicy": {
+    "severities": {}
+  },
+  "uri": "https://app.snyk.io/org/star3am/project/e7442ea8-2200-46c7-aa05-d13052c01bf5/history/8ae6c6db-2590-4ed3-a7f6-0fb570b44256",
+  "path": "ubuntu:18.04",
+  "manageUrl": "https://snyk.io/org/star3am/manage",
+  "packageManager": "deb",
+  "projectName": "docker-image|ubuntu"
+}

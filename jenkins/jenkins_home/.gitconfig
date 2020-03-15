@@ -1,0 +1,6 @@
+[filesystem "Oracle Corporation|1.8.0_232|/dev/sda1"]
+	timestampResolution = 3001 microseconds
+	minRacyThreshold = 0 nanoseconds
+[filesystem "Oracle Corporation|1.8.0_232|var_jenkins_home"]
+	timestampResolution = 1002 milliseconds
+	minRacyThreshold = 0 nanoseconds

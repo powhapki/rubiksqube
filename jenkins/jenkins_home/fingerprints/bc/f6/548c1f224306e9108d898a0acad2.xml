@@ -1,0 +1,13 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<fingerprint>
+  <timestamp>2019-11-26 10:19:21.961 UTC</timestamp>
+  <md5sum>bcf6548c1f224306e9108d898a0acad2</md5sum>
+  <fileName>Credential id=vault-initial-root-token name=vault-initial-root-token</fileName>
+  <usages>
+    <entry>
+      <string>vault-jenkins</string>
+      <ranges>6-8</ranges>
+    </entry>
+  </usages>
+  <facets/>
+</fingerprint>

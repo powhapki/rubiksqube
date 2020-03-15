@@ -1,0 +1,8 @@
+python,true,sonar-python-plugin-2.1.0.5269.jar|6a7f4967985a1119a98b6bd58aee758a
+java,true,sonar-java-plugin-5.14.0.18788.jar|b85e79af43c5fd9d871f67c00ce3c18d
+web,true,sonar-html-plugin-3.2.0.2082.jar|298a75a167830bfe6c1a75bf3a08fe19
+go,false,sonar-go-plugin-1.6.0.719.jar|31899c2ada93bcca6e02085f1f47d6de
+php,true,sonar-php-plugin-3.2.0.4868.jar|84bac7bdcd3d78a2cd7037bfd70fcc3c
+typescript,true,sonar-typescript-plugin-2.1.0.4359.jar|1b0c24e5d9a55450dfadcd0a2c8bc5c8
+javascript,true,sonar-javascript-plugin-6.1.0.11503.jar|a2b6a8802525720c8af2ca4fa85a2513
+scmtfvc,false,sonar-scm-tfvc-plugin-2.2.jar|8e9ec3d5aaa50c9e95b240fe59ff3715

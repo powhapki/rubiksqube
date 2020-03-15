@@ -1,0 +1,23 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<hudson.plugins.sonar.SonarGlobalConfiguration plugin="sonar@2.10">
+  <jenkinsSupplier class="hudson.plugins.sonar.SonarGlobalConfiguration$$Lambda$76/1434607946"/>
+  <installations>
+    <hudson.plugins.sonar.SonarInstallation>
+      <name>sonarqube</name>
+      <serverUrl>http://10.9.99.10:9000/</serverUrl>
+      <credentialsId>jenkins-sonarqube-admin</credentialsId>
+      <webhookSecretId>jenkins-sonarqube-admin</webhookSecretId>
+      <mojoVersion></mojoVersion>
+      <additionalProperties> -X</additionalProperties>
+      <additionalAnalysisProperties></additionalAnalysisProperties>
+      <triggers>
+        <skipScmCause>false</skipScmCause>
+        <skipUpstreamCause>false</skipUpstreamCause>
+        <envVar></envVar>
+      </triggers>
+    </hudson.plugins.sonar.SonarInstallation>
+  </installations>
+  <buildWrapperEnabled>true</buildWrapperEnabled>
+  <dataMigrated>true</dataMigrated>
+  <credentialsMigrated>true</credentialsMigrated>
+</hudson.plugins.sonar.SonarGlobalConfiguration>

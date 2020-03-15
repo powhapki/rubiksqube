@@ -1,0 +1,7 @@
+apiVersion: 1
+
+datasources:
+  - name: Prometheus
+    type: prometheus
+    access: direct
+    url: http://10.9.99.10:9090

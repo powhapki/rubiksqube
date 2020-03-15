@@ -1,0 +1,22 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: travis
+Build-Jdk: 1.8.0_151
+Extension-Name: snyk-security-scanner
+Specification-Title: Add the ability to test your code dependencies fo
+ r vulnerabilities against Snyk database
+Implementation-Title: snyk-security-scanner
+Implementation-Version: 2.10.3
+Group-Id: io.snyk.plugins
+Short-Name: snyk-security-scanner
+Long-Name: Snyk Security Plugin
+Url: https://wiki.jenkins-ci.org/display/JENKINS/Snyk+Security+Plugin
+Compatible-Since-Version: 2.0.0
+Minimum-Java-Version: 1.8
+Plugin-Version: 2.10.3
+Hudson-Version: 2.60.3
+Jenkins-Version: 2.60.3
+Plugin-Dependencies: workflow-step-api:2.18,credentials:2.1.19
+Plugin-Developers: 
+
