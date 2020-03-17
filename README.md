@@ -1,13 +1,10 @@
-# HashiQube Overview
-HashiQube is a VM with a Docker daemon inside. It runs all HashiCorp products. __Vault, Terraform, Nomad, Consul, Vagrant, Packer and Sentinel.__
+# RubiksQube Overview
+RubiksQube is a VM with a Docker daemon inside. It runs all HashiCorp products. __Vault, Terraform, Nomad, Consul, Vagrant, Packer and Sentinel.__
 It also runs a host of other popular Open Source DevOps / DevSecOps applications showcasing how simple integration with HashiCorp products can result in tangible learnings and benefits for all its users
 Once the Qube is up an internet connection is no longer needed meaning sales pitches and demos for potential and existing customers is greatly aided.
 
-## HashiQube runs all HashiCorp's products
-![HashiQube](images/thestack.png?raw=true "HashiQube")
-
 ## Purpose
-HashiQube has been created to enable anyone who is interested in secure automation pipelines the ability to run a suite of ‘best in class’ tools their local machines at the cost of a small amount of system resources.
+RubiksQube has been created to enable anyone who is interested in secure automation pipelines the ability to run a suite of ‘best in class’ tools their local machines at the cost of a small amount of system resources.
 The Qube gives all interested parties the empowerment  to  deploy these tools in a way covers multiple use cases effectively providing a ‘concept to completion’ test bed using open source HashiCorp products.
 The original use case was born the desire to demystify DevSecOps utilising Terraform, Vault, Consul, Sentinel and Nomad as well as some other well know open source CI/CD tools by providing a ‘hands-on’ environment that demonstrates the value of secret and credential management in standard software development pipeline.
 
@@ -71,9 +68,6 @@ For Documentation please open http://localhost:3333 in your browser
 * Localstack http://localhost:8080
 * Terraform Enterprise (enterprise needs a licence) http://localhost:8800
 
-## HashiQube runs all HashiCorp's products
-![HashiQube](images/hashicorp_products.png?raw=true "HashiQube")
-
 ## Other
 * LDAP can be accessed on ldap://localhost:389
 * Localstack web http://localhost:8080
@@ -116,32 +110,10 @@ For Documentation please open http://localhost:3333 in your browser
 ==> user.local.dev: Setting hostname...
 ```
 
-## To investigate
-### CI/CD
-    Gatling: (load testing) https://gatling.io/open-source
-    Spinnaker for multi-cloud / multi swim lane CD tool: https://www.spinnaker.io/concepts/
-    Build agent showing code clean and dirty.
-        Java
-        Python
-        JavaScript
-
-### Monitoring / Dash-boarding
-    Hygiea dashboard: https://github.com/Hygieia/Hygieia
-    Prometheus and Grafana for monitoring and logging: https://prometheus.io/docs/visualization/grafana/
-    Alerting will be handled by a local docker messaging server such as Gotify: https://github.com/gotify/server
-
-### Containerisation and API’s
-    Gloo: https://docs.solo.io/gloo/latest/introduction/
-
 ## Support & Feedback
-For suggestions, feedback and queries please branch or and submit a Pull Request or directly contact the architects of the HashiQube via email:
+For suggestions, feedback and queries please branch or and submit a Pull Request or directly contact the architects of the RubiksQube via email:
 
-Lead Automation Architect [riaan.nolan@servian.com](mailto:riaan.nolan@servian.com)
-
-## Contributors and Special mentions
-A Very special mention to HashiQube's contributors, Thank You All for your help, suggestions and contributions no matter how small <3
- - Konstantin Vanyushov
- - Tristan Morgan
+Lead Automation Architect [riaan.nolan@gmail.com](mailto:riaan.nolan@gmail.com)
 
 ## License
-HashiQube is available as open-source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+RubiksQube is available as open-source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
