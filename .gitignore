@@ -8,7 +8,6 @@
 **.rli
 **.terraform**
 **.tfstate**
-SUMMARY.md
 sonarqube/logs**
 sonarqube/data/es6**
 sonarqube/data/sonar.lock.db
