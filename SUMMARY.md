@@ -21,3 +21,4 @@
   * [Prometheus-grafana](prometheus-grafana/README.md)
   * [Snyk](snyk/README.md)
   * [Sonarqube](sonarqube/README.md)
+  * [Gitlab](gitlab/README.md)

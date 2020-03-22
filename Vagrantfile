@@ -118,6 +118,8 @@ Vagrant::configure("2") do |config|
         config.vm.network "forwarded_port", guest: 3333, host: 3333 # docsify
         config.vm.network "forwarded_port", guest: 5000, host: 5000 # blast-radius
         config.vm.network "forwarded_port", guest: 5443, host: 5443 # ansible-tower
+        config.vm.network "forwarded_port", guest: 5543, host: 5543 # gitlab
+        config.vm.network "forwarded_port", guest: 5580, host: 5580 # gitlab
         # localstack
         for port in 4567..4597 do
           config.vm.network "forwarded_port", guest: "#{port}", host: "#{port}" # localstack
@@ -305,6 +307,10 @@ Vagrant::configure("2") do |config|
       # snyk
       # vagrant up --provision-with snyk to only run this on vagrant up
       config.vm.provision "snyk", run: "never", type: "shell", preserve_order: true, privileged: false, path: "snyk/snyk.sh"
+
+      # gitlab
+      # vagrant up --provision-with gitlab to only run this on vagrant up
+      config.vm.provision "gitlab", run: "never", type: "shell", preserve_order: true, privileged: false, path: "gitlab/gitlab.sh"
 
       # vagrant up --provision-with bootstrap to only run this on vagrant up
       config.vm.provision "welcome", preserve_order: true, type: "shell", privileged: true, inline: <<-SHELL
