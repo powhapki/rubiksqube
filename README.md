@@ -56,7 +56,8 @@ This repository is designed to provide you with a stack that demonstrates the po
 * [__Cerebro__](elasticsearch-kibana-cerebro/#elasticsearch-kibana-and-cerebro) - Cerebro is the evolution of the previous Elasticsearch plugin Elasticsearch kopf
 * [__Blast-Radius__](blastradius/#blast-radius) - Blast Radius is a tool for reasoning about Terraform dependency graphs with interactive visualizations
 * [__Ansible-Tower__](ansible-tower/#ansible-tower) - Red Hat Ansible Tower
-* [__Snyk__](snyk/#snyk) - Develop fast. Stay secure.
+* [__Snyk__](snyk/#snyk) - Develop fast. Stay secure
+* [__Gitlab__](gitlab/#gitlab) - GitLab is a complete DevOps platform, delivered as a single application
 
 Once the stack is up you will have a large number of services running and available on `localhost` <br />
 For Documentation please open http://localhost:3333 in your browser
