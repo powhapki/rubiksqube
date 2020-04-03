@@ -10,10 +10,13 @@ function minikube-install() {
         curl -sLo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
         sudo chmod +x minikube
     fi
+    export CHANGE_MINIKUBE_NONE_USER=true
     sudo mkdir -p /usr/local/bin/
     sudo install minikube /usr/local/bin/
     sudo minikube delete
-    sudo minikube start --vm-driver=none --apiserver-name=10.9.99.10 --apiserver-ips=10.9.99.10 --extra-config=kubelet.node-ip=10.9.99.10
+    # BUG: https://github.com/kubernetes/minikube/issues/7179
+    sudo apt install conntrack
+    sudo CHANGE_MINIKUBE_NONE_USER=true minikube start --vm-driver=none --apiserver-name=10.9.99.10 --apiserver-ips=10.9.99.10 --extra-config=kubelet.node-ip=10.9.99.10
     sudo curl -sLO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
     sudo chmod +x kubectl
     sudo install kubectl /usr/local/bin/
