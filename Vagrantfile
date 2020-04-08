@@ -71,7 +71,7 @@ Vagrant::configure("2") do |config|
   end
 
   # auto install plugins, will prompt for admin password on 1st vagrant up
-  required_plugins = %w( vagrant-disksize )
+  required_plugins = %w( vagrant-disksize vagrant-hostsupdater )
   required_plugins.each do |plugin|
     exec "vagrant plugin install #{plugin}#{COMMAND_SEPARATOR}vagrant #{ARGV.join(" ")}" unless Vagrant.has_plugin? plugin || ARGV[0] == 'plugin'
   end
@@ -120,6 +120,10 @@ Vagrant::configure("2") do |config|
         config.vm.network "forwarded_port", guest: 5443, host: 5443 # ansible-tower
         config.vm.network "forwarded_port", guest: 5543, host: 5543 # gitlab
         config.vm.network "forwarded_port", guest: 5580, host: 5580 # gitlab
+        config.vm.network "forwarded_port", guest: 9080, host: 9080 # nginx
+        config.vm.network "forwarded_port", guest: 9081, host: 9081 # rancher
+        config.vm.network "forwarded_port", guest: 9443, host: 9443 # rancher
+
         # localstack
         for port in 4567..4597 do
           config.vm.network "forwarded_port", guest: "#{port}", host: "#{port}" # localstack
@@ -127,6 +131,7 @@ Vagrant::configure("2") do |config|
       end
 
       config.vm.hostname = "#{machine[:name]}"
+      config.hostsupdater.aliases = ["#{machine[:name]}"]
 
       unless machine[:vbox_config].nil?
         config.vm.provider :virtualbox do |vb|
@@ -168,16 +173,27 @@ Vagrant::configure("2") do |config|
           sed -i "s/VAGRANT_INDEX=.*/VAGRANT_INDEX=#{index}/g" /etc/environment
         fi
         # install applications
+        echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf
         export DEBIAN_FRONTEND=noninteractive
         export PATH=$PATH:/root/.local/bin
         sudo DEBIAN_FRONTEND=noninteractive apt-get --assume-yes update -o Acquire::CompressionTypes::Order::=gz
         sudo DEBIAN_FRONTEND=noninteractive apt-get --assume-yes upgrade
-        sudo DEBIAN_FRONTEND=noninteractive apt-get --assume-yes install swapspace rkhunter jq curl unzip software-properties-common bzip2 git make python3-pip python3-dev python3-virtualenv golang-go apt-utils ntp
+        sudo DEBIAN_FRONTEND=noninteractive apt-get --assume-yes install swapspace rkhunter jq curl unzip software-properties-common bzip2 git make python3-pip python3-dev python3-virtualenv golang-go apt-utils ntp dnsmasq
         sudo -E -H pip3 install pip --upgrade
         sudo DEBIAN_FRONTEND=noninteractive apt-get --assume-yes autoremove
         sudo DEBIAN_FRONTEND=noninteractive apt-get --assume-yes clean
         sudo rm -rf /var/lib/apt/lists/partial
         #sudo rkhunter --check || true
+        # DNS resolution config for consul/minikube/rancher et el
+        # stop systemd DNS resolution
+        sudo systemctl stop systemd-resolved
+        sudo systemctl disable systemd-resolved
+        sudo rm -rf /etc/resolv.conf
+        sudo touch /etc/resolv.conf
+        echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf
+        # https://learn.hashicorp.com/consul/security-networking/forwarding#dnsmasq-setup
+        echo "server=/consul/10.9.99.10#8600" | sudo tee /etc/dnsmasq.d/10-consul
+        sudo systemctl restart dnsmasq
 
         # if the user IS jenkins, the we are running this from a Jenkinsfile (Scripted Pipelines)
         if [ "#{user}" != "jenkins" ]; then
@@ -203,7 +219,7 @@ Vagrant::configure("2") do |config|
 
       # blast-radius
       # vagrant up --provision-with blastradius to only run this on vagrant up
-      config.vm.provision "blastradius", type: "shell", preserve_order: true, privileged: false, path: "blastradius/blastradius.sh"
+      config.vm.provision "blastradius", run: "never", type: "shell", preserve_order: true, privileged: false, path: "blastradius/blastradius.sh"
 
       # install vault
       # vagrant up --provision-with vault to only run this on vagrant up
@@ -227,7 +243,7 @@ Vagrant::configure("2") do |config|
 
       # install localstack
       # vagrant up --provision-with localstack to only run this on vagrant up
-      config.vm.provision "localstack", type: "shell", preserve_order: true, privileged: false, path: "localstack/localstack.sh"
+      config.vm.provision "localstack", run: "never", type: "shell", preserve_order: true, privileged: false, path: "localstack/localstack.sh"
 
       # vagrant up --provision-with ldap to only run this on vagrant up
       # run ldap docker container for testing with vault (for example) ldap login
@@ -312,12 +328,20 @@ Vagrant::configure("2") do |config|
       # vagrant up --provision-with gitlab to only run this on vagrant up
       config.vm.provision "gitlab", run: "never", type: "shell", preserve_order: true, privileged: false, path: "gitlab/gitlab.sh"
 
+      # nginx
+      # vagrant up --provision-with nginx to only run this on vagrant up
+      config.vm.provision "nginx", run: "never", type: "shell", preserve_order: true, privileged: false, path: "nginx/nginx.sh"
+
+      # rancher
+      # vagrant up --provision-with rancher to only run this on vagrant up
+      config.vm.provision "rancher", run: "never", type: "shell", preserve_order: true, privileged: false, path: "rancher/rancher.sh"
+
       # vagrant up --provision-with bootstrap to only run this on vagrant up
       config.vm.provision "welcome", preserve_order: true, type: "shell", privileged: true, inline: <<-SHELL
         echo -e '\e[38;5;198m'"HashiQube has now been provisioned, and your services should be running."
         echo -e '\e[38;5;198m'"Below are some links for you to get started."
         echo -e '\e[38;5;198m'"Main documentation http://localhost:3333 Open this first."
-        echo -e '\e[38;5;198m'"Vault http://localhost:8200"
+        echo -e '\e[38;5;198m'"Vault http://localhost:8200" with $(cat /etc/vault/init.file | grep Root)"
         echo -e '\e[38;5;198m'"Consul http://localhost:8500"
         echo -e '\e[38;5;198m'"Nomad http://localhost:4646"
         echo -e '\e[38;5;198m'"Fabio http://localhost:9998"

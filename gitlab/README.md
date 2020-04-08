@@ -170,4 +170,27 @@ Now please login with username __root__ and the password you set in the previous
 Now you should be logged into Gitlab
 ![Gitlab](images/gitlab-first-login.png?raw=true "Gitlab")
 
-More info __Coming Soon__
+## Runners
+https://docs.gitlab.com/runner/register/index.html#docker
+
+`docker run --rm -t -i -v /srv/gitlab-runner/config:/etc/gitlab-runner gitlab/gitlab-runner register`
+```
+Runtime platform                                    arch=amd64 os=linux pid=6 revision=4c96e5ad version=12.9.0
+Running in system-mode.
+
+Please enter the gitlab-ci coordinator URL (e.g. https://gitlab.com/):
+http://10.9.99.10:5580/
+Please enter the gitlab-ci token for this runner:
+7vJPV13i_a-ZiTsLuoUq
+Please enter the gitlab-ci description for this runner:
+[7ff5e0f50b23]: hashiqube
+Please enter the gitlab-ci tags for this runner (comma separated):
+hashiqube
+Registering runner... succeeded                     runner=7vJPV13i
+Please enter the executor: docker, parallels, ssh, docker-ssh+machine, docker+machine, kubernetes, custom, docker-ssh, shell, virtualbox:
+docker
+Please enter the default Docker image (e.g. ruby:2.6):
+docker:latest
+Runner registered successfully. Feel free to start it, but if it's running already the config should be automatically reloaded!
+```
+![Gitlab-Runner](images/gitlab-runner.png?raw=true "Gitlab-Runner")
