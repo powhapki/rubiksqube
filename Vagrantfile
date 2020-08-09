@@ -331,7 +331,7 @@ Vagrant::configure("2") do |config|
 
       # nginx
       # vagrant up --provision-with nginx to only run this on vagrant up
-      config.vm.provision "nginx", run: "never", type: "shell", preserve_order: true, privileged: false, path: "nginx/nginx.sh"
+      #config.vm.provision "nginx", run: "never", type: "shell", preserve_order: true, privileged: false, path: "nginx/nginx.sh"
 
       # rancher
       # vagrant up --provision-with rancher to only run this on vagrant up
